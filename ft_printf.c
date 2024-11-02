@@ -6,7 +6,7 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:58:56 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/01 23:24:42 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/01 23:50:51 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,26 @@ int	match(char c, char *charset)
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+static ssize_t	process_sign(ssize_t *printed, const char **sign, va_list *args)
+{
+	ssize_t	ret;
+
+	if (!match((*sign)[1], "cspdiuxX%"))
+		(*sign)++;
+	else
+	{
+		ret = ft_convert_and_put(args, ((*sign)++)[1]);
+		if (ret < 0)
+			return (-1);
+		*printed += ret;
+	}
+	return (0);
+}
+
+ssize_t	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	size_t	printed;
+	ssize_t	printed;
 
 	if (!format)
 		return (-1);
@@ -36,14 +52,13 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			if (!match(format[1], "cspdiuxX%"))
-				format++;
-			else
-				printed += ft_convert_and_put(&args, (format++)[1]);
+			if (process_sign(&printed, &format, &args) < 0)
+				return (-1);
 			printed--;
 		}
 		else
-			write(1, format, 1);
+			if (write(1, format, 1) < 0)
+				return (-1);
 		printed++;
 		format++;
 	}

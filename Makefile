@@ -8,7 +8,8 @@ SRC = ft_printf.c \
 	srcs/ft_puthex.c \
 	srcs/ft_putchar.c \
 	srcs/ft_convert_and_put.c \
-	srcs/ft_putu.c
+	srcs/ft_putu.c \
+	srcs/ft_putptr.c
 
 OBJ = $(SRC:.c=.o)
 
