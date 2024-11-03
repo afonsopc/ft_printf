@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 00:11:00 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/02 17:42:42 by afpachec         ###   ########.fr       */
+/*   Created: 2024/10/29 17:21:48 by afpachec          #+#    #+#             */
+/*   Updated: 2024/11/02 11:57:29 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_putptr(void *n, t_flags *flags)
+char	*ft_strdup(const char *s1)
 {
-	int	ret1;
-	int	ret2;
+	char	*dup;
+	int		i;
 
-	(void)flags;
-	ret1 = ft_putstr("0x", NULL);
-	if (ret1 < 0)
-		return (ret1);
-	ret2 = ft_puthex((uintptr_t)n, 0, NULL);
-	if (ret2 < 0)
-		return (ret2);
-	return (ret1 + ret2);
+	dup = malloc(ft_strlen(s1) + 1);
+	if (dup == NULL)
+		return (dup);
+	i = -1;
+	while (s1[++i])
+		dup[i] = s1[i];
+	dup[i] = '\0';
+	return (dup);
 }

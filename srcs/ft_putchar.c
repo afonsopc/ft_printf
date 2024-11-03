@@ -6,15 +6,14 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:00:21 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/01 23:38:35 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:33:49 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-ssize_t	ft_putchar(char c)
+int	ft_putchar(char c, t_flags *flags)
 {
-	if (write(1, &c, 1) < 0)
-		return (-1);
-	return (1);
+	(void)flags;
+	return (write(1, &c, 1));
 }
