@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 17:00:21 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/03 19:07:20 by afpachec         ###   ########.fr       */
+/*   Created: 2024/10/28 19:49:29 by afpachec          #+#    #+#             */
+/*   Updated: 2024/11/04 19:16:58 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_putchar(char c, t_flags *flags)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	ret;
+	size_t	src_len;
+	size_t	i;
 
-	ret = 1;
-	if (write(1, &c, 1) < 0)
-		return (-1);
-	while (flags->dash && (flags->width - 1) > 0)
+	i = 0;
+	src_len = ft_strlen(src);
+	if (dstsize == 0)
+		return (src_len);
+	while (src[i] && i < dstsize - 1)
 	{
-		if (write(1, " ", 1) < 0)
-			return (-1);
-		ret++;
-		flags->width--;
+		dst[i] = src[i];
+		i++;
 	}
-	return (ret);
+	dst[i] = '\0';
+	return (src_len);
 }

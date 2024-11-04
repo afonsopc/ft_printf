@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 17:00:21 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/03 19:07:20 by afpachec         ###   ########.fr       */
+/*   Created: 2024/10/28 22:32:41 by afpachec          #+#    #+#             */
+/*   Updated: 2024/11/04 19:16:55 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_putchar(char c, t_flags *flags)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int	ret;
+	size_t	dst_len;
+	size_t	src_len;
+	size_t	i;
 
-	ret = 1;
-	if (write(1, &c, 1) < 0)
-		return (-1);
-	while (flags->dash && (flags->width - 1) > 0)
+	src_len = ft_strlen(src);
+	if (dstsize == 0)
+		return (src_len);
+	dst_len = ft_strlen(dst);
+	if (dstsize <= dst_len)
+		return (dstsize + src_len);
+	i = 0;
+	while (src[i] && (dst_len + i) < (dstsize - 1))
 	{
-		if (write(1, " ", 1) < 0)
-			return (-1);
-		ret++;
-		flags->width--;
+		dst[dst_len + i] = src[i];
+		i++;
 	}
-	return (ret);
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }

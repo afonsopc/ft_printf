@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 17:00:21 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/03 19:07:20 by afpachec         ###   ########.fr       */
+/*   Created: 2024/10/28 15:57:40 by afpachec          #+#    #+#             */
+/*   Updated: 2024/11/04 22:53:09 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_putchar(char c, t_flags *flags)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int	ret;
+	unsigned char	*ptr;
 
-	ret = 1;
-	if (write(1, &c, 1) < 0)
-		return (-1);
-	while (flags->dash && (flags->width - 1) > 0)
+	ptr = b;
+	while (len > 0)
 	{
-		if (write(1, " ", 1) < 0)
-			return (-1);
-		ret++;
-		flags->width--;
+		ptr[len - 1] = c;
+		len--;
 	}
-	return (ret);
+	return (b);
 }

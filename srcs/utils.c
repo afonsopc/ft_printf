@@ -6,7 +6,7 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 16:54:20 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/02 18:32:54 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/04 22:49:57 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ char	*ft_itoa(int n)
 		i--;
 	}
 	str[i] = "0123456789"[nb % 10];
-	if (n < 0)
-		str[--i] = '-';
 	return (ft_strdup(&str[i]));
 }
 
@@ -89,10 +87,14 @@ t_flags	*new_flags(void)
 	flags = malloc(sizeof(t_flags));
 	if (!flags)
 		return (NULL);
-	flags->dash = 0;
-	flags->dot = 0;
-	flags->precision = 0;
-	flags->width = 0;
 	flags->zero = 0;
+	flags->dash = 0;
+	flags->sign = 0;
+	flags->dot = 0;
+	flags->plus = 0;
+	flags->space = 0;
+	flags->alt = 0;
+	flags->width = 0;
+	flags->length = 0;
 	return (flags);
 }

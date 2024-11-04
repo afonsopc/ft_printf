@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 17:00:21 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/03 19:07:20 by afpachec         ###   ########.fr       */
+/*   Created: 2024/10/29 21:20:30 by afpachec          #+#    #+#             */
+/*   Updated: 2024/11/04 19:16:14 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_putchar(char c, t_flags *flags)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	ret;
+	char	*str;
+	size_t	s1_len;
+	size_t	s2_len;
 
-	ret = 1;
-	if (write(1, &c, 1) < 0)
-		return (-1);
-	while (flags->dash && (flags->width - 1) > 0)
-	{
-		if (write(1, " ", 1) < 0)
-			return (-1);
-		ret++;
-		flags->width--;
-	}
-	return (ret);
+	if (!s1 || !s2)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = malloc(s1_len + s2_len + 1);
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, s1_len + 1);
+	ft_strlcat(str, s2, s1_len + s2_len + 1);
+	return (str);
 }

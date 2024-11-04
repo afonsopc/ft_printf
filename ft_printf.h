@@ -6,7 +6,7 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:14 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/02 17:43:49 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/04 22:53:15 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,28 @@ typedef struct s_flags
 {
 	int		zero;
 	int		dash;
+	int		sign;
 	int		dot;
-	size_t	width;
-	size_t	precision;
+	int		plus;
+	int		space;
+	int		alt;
+	int		width;
+	int		length;
 }	t_flags;
 
 char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
+void	*ft_memset(void *b, int c, size_t len);
 
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
 char	*ft_uitoa(unsigned int n);
 char	*ft_uitohexa(unsigned long n, char *hex);
 
+int		parse_flags(char *str, t_flags *flags);
 t_flags	*new_flags(void);
 int		ft_convert_and_put(va_list *args, const char sign, t_flags *flags);
 
