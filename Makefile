@@ -25,20 +25,16 @@ all: $(NAME)
 bonus: all
 
 $(NAME): $(OBJ)
-	@echo "Compiling $(NAME)..."
-	@ar rcs $(NAME) $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
 %.o: %.c $(HEADER)
-	@echo "Compiling $<..."
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "Cleaning object files..."
-	@rm -f $(OBJ) $(BONUS_OBJ)
+	rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	@echo "Cleaning $(NAME)..."
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
