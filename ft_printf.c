@@ -12,37 +12,42 @@
 
 #include "ft_printf.h"
 
-int	match(char c, char *charset)
+int	ft_convert_and_put(va_list *args, char sign)
 {
-	while (*charset)
-	{
-		if (c == *charset)
-			return (1);
-		charset++;
-	}
+	if (sign == 's')
+		return (ft_putstr(va_arg(*args, char *)));
+	else if (sign == 'd' || sign == 'i')
+		return (ft_putnbr(va_arg(*args, int)));
+	else if (sign == 'c')
+		return (ft_putchar(va_arg(*args, int)));
+	else if (sign == 'p')
+		return (ft_putptr(va_arg(*args, void *), 0));
+	else if (sign == 'u')
+		return (ft_putu(va_arg(*args, unsigned int)));
+	else if (sign == 'x')
+		return (ft_puthex(va_arg(*args, unsigned int), 0));
+	else if (sign == 'X')
+		return (ft_puthex(va_arg(*args, unsigned int), 1));
+	else if (sign == '%')
+		return (ft_putchar('%'));
 	return (0);
 }
 
-static ssize_t	process_sign(ssize_t *printed, const char **sign, va_list *args)
+int	ft_strlen(const char *s)
 {
-	ssize_t	ret;
+	int	counter;
 
-	if (!match((*sign)[1], "cspdiuxX%"))
-		(*sign)++;
-	else
-	{
-		ret = ft_convert_and_put(args, ((*sign)++)[1]);
-		if (ret < 0)
-			return (-1);
-		*printed += ret;
-	}
-	return (0);
+	counter = 0;
+	while (s[counter])
+		counter++;
+	return (counter);
 }
 
-ssize_t	ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	ssize_t	printed;
+	int		printed;
+	int		ret;
 
 	if (!format)
 		return (-1);
@@ -51,16 +56,25 @@ ssize_t	ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
-		{
-			if (process_sign(&printed, &format, &args) < 0)
-				return (-1);
-			printed--;
-		}
+			ret = ft_convert_and_put(&args, *++format);
 		else
-			if (write(1, format, 1) < 0)
-				return (-1);
-		printed++;
+			ret = ft_putchar(*format);
+		if (ret < 0)
+		{
+			va_end(args);
+			return (-1);
+		}
+		printed += ret;
 		format++;
 	}
+	va_end(args);
 	return (printed);
 }
+
+/* int main()
+{
+	int a = ft_printf("%s\n\n", "pagman");
+	int b = printf("%s\n\n", "pagman");
+
+	printf("%d | %d\n", a, b);
+} */

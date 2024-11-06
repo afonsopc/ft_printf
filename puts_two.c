@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 static ssize_t	phex(unsigned long n, char *base, ssize_t *size)
 {
@@ -20,7 +20,7 @@ static ssize_t	phex(unsigned long n, char *base, ssize_t *size)
 	return (write(1, &base[n % 16], 1));
 }
 
-ssize_t	ft_puthex(unsigned long n, int upper)
+int	ft_puthex(unsigned long n, int upper)
 {
 	ssize_t	size;
 	char	*hex;
@@ -32,4 +32,18 @@ ssize_t	ft_puthex(unsigned long n, int upper)
 	if (phex(n, hex, &size) < 0)
 		return (-1);
 	return (size);
+}
+
+int	ft_putptr(void *n, int upper)
+{
+	int	size;
+
+	if (!n)
+		return (ft_putstr("(nil)"));
+	if (ft_putstr("0x") < 0)
+		return (-1);
+	size = ft_puthex((unsigned long)n, upper);
+	if (size < 0)
+		return (-1);
+	return (size + 2);
 }

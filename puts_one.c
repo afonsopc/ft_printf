@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
-static ssize_t	pu(unsigned int n, ssize_t *size)
+static int	pu(unsigned int n, int *size)
 {
 	if (n >= 10 && pu(n / 10, size) < 0)
 		return (-1);
@@ -20,12 +20,43 @@ static ssize_t	pu(unsigned int n, ssize_t *size)
 	return (write(1, &"0123456789"[n % 10], 1));
 }
 
-ssize_t	ft_putu(unsigned int n)
+int	ft_putu(unsigned int n)
 {
-	ssize_t	size;
+	int	size;
 
 	size = 0;
 	if (pu(n, &size) < 0)
 		return (-1);
 	return (size);
+}
+
+int	ft_putnbr(int n)
+{
+	int				size;
+	unsigned int	un;
+
+	size = 0;
+	un = n;
+	if (n < 0)
+	{
+		un = -n;
+		size++;
+		if (write(1, "-", 1) < 0)
+			return (-1);
+	}
+	if (pu(un, &size) < 0)
+		return (-1);
+	return (size);
+}
+
+int	ft_putstr(char *str)
+{
+	if (!str)
+		return (ft_putstr("(null)"));
+	return (write(1, str, ft_strlen(str)));
+}
+
+int	ft_putchar(char c)
+{
+	return (write(1, &c, 1));
 }

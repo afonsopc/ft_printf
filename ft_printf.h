@@ -17,14 +17,14 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-ssize_t	ft_putu(unsigned int n);
-ssize_t	ft_putptr(unsigned long n, int upper);
-ssize_t	ft_convert_and_put(va_list *args, const char sign);
-ssize_t	ft_putchar(char c);
-ssize_t	ft_puthex(unsigned long n, int upper);
-ssize_t	ft_strlen(const char *s);
-ssize_t	ft_putnbr(int n);
-ssize_t	ft_putstr(char *str);
-ssize_t	ft_printf(const char *format, ...);
+int	ft_putu(unsigned int n);
+int	ft_putptr(void *n, int upper);
+int	ft_convert_and_put(va_list *args, const char sign);
+int	ft_putchar(char c);
+int	ft_puthex(unsigned long n, int upper);
+int	ft_strlen(const char *s);
+int	ft_putnbr(int n);
+int	ft_putstr(char *str);
+int	ft_printf(const char *format, ...);
 
 #endif
