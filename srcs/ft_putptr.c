@@ -6,7 +6,7 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 00:11:00 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/02 00:13:18 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:15:55 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ ssize_t	ft_putptr(unsigned long n, int upper)
 {
 	ssize_t	size;
 
+	if (!n)
+		return (ft_putstr("(nil)"));
 	if (ft_putstr("0x") < 0)
 		return (-1);
 	size = ft_puthex(n, upper);

@@ -6,13 +6,14 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:14 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/02 00:12:47 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:12:11 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <stdio.h>
 # include <unistd.h>
 # include <stdarg.h>
 
