@@ -6,7 +6,7 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:00:21 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/04 18:53:48 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/05 22:35:02 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_putstr(char *str, t_flags *flags)
 	int	ret3;
 
 	if (!str)
-		return (ft_putstr("(null)", NULL));
+		str = "(null)";
 	str_len = ft_strlen(str);
 	if (flags && flags->dot && flags->length < str_len)
 		str_len = flags->length;

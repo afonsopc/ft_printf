@@ -16,6 +16,7 @@ SRC = ft_printf.c \
 	srcs/ft_strlcpy.c \
 	srcs/ft_strjoin.c \
 	srcs/ft_memset.c \
+	flag_utils.c \
 	flag_parsing.c
 
 OBJ = $(SRC:.c=.o)

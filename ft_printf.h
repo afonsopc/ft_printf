@@ -6,7 +6,7 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:14 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/04 22:53:15 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:53:14 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		ft_atoi(const char *str);
 char	*ft_uitoa(unsigned int n);
 char	*ft_uitohexa(unsigned long n, char *hex);
 
+void	set_all_zero_and_pass_dash_and_width(t_flags *flags);
 int		parse_flags(char *str, t_flags *flags);
 t_flags	*new_flags(void);
 int		ft_convert_and_put(va_list *args, const char sign, t_flags *flags);
@@ -52,7 +53,7 @@ int		ft_printf(const char *format, ...);
 int		ft_putchar(char c, t_flags *flags);
 int		ft_putu(unsigned int n, t_flags *flags);
 int		ft_putptr(void *n, t_flags *flags);
-int		ft_puthex(unsigned long n, int upper, t_flags *flags);
+int		ft_puthex(unsigned long n, int force_alt, int upper, t_flags *flags);
 int		ft_putnbr(int n, t_flags *flags);
 int		ft_putstr(char *str, t_flags *flags);
 
