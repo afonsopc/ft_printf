@@ -6,33 +6,17 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:00:21 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/02 17:35:21 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/01 23:49:12 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_putstr(char *str, t_flags *flags)
+ssize_t	ft_putstr(char *str)
 {
-	size_t	str_len;
-	int		ret;
-
 	if (!str)
-		return (ft_putstr("(null)", NULL));
-	str_len = ft_strlen(str);
-	if (flags && flags->dot == 1 && flags->precision < str_len)
-		str_len = flags->precision;
-	ret = write(1, str, str_len);
-	if (ret < 0)
+		return (ft_putstr("(null)"));
+	if (write(1, str, ft_strlen(str)) < 0)
 		return (-1);
-	if (flags && flags->dash == 1 && flags->width > str_len)
-	{
-		while (flags->width-- > str_len)
-		{
-			ret = write(1, " ", 1);
-			if (ret < 0)
-				return (-1);
-		}
-	}
-	return (str_len);
+	return (ft_strlen(str));
 }

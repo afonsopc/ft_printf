@@ -6,15 +6,15 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 20:04:23 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:33 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/01 23:36:03 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+ssize_t	ft_strlen(const char *s)
 {
-	int	counter;
+	ssize_t	counter;
 
 	counter = 0;
 	while (s[counter])
