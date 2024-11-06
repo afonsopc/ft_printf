@@ -11,18 +11,11 @@ SRC = ft_printf.c \
 	srcs/ft_putu.c \
 	srcs/ft_putptr.c \
 	srcs/ft_strdup.c \
-	srcs/utils.c \
-	srcs/ft_strlcat.c \
-	srcs/ft_strlcpy.c \
-	srcs/ft_strjoin.c \
-	srcs/ft_memset.c \
-	flag_parsing.c
+	srcs/utils.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
-
-bonus: all
 
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)

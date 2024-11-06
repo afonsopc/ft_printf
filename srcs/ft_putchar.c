@@ -6,7 +6,7 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:00:21 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/03 19:07:20 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:33:49 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 
 int	ft_putchar(char c, t_flags *flags)
 {
-	int	ret;
-
-	ret = 1;
-	if (write(1, &c, 1) < 0)
-		return (-1);
-	while (flags->dash && (flags->width - 1) > 0)
-	{
-		if (write(1, " ", 1) < 0)
-			return (-1);
-		ret++;
-		flags->width--;
-	}
-	return (ret);
+	(void)flags;
+	return (write(1, &c, 1));
 }
