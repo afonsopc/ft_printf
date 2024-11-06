@@ -6,7 +6,7 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 20:30:01 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/05 23:38:01 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:41:35 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	ft_convert_and_put(va_list *args, const char sign, t_flags *flags)
 	else if (sign == 'u')
 		return (ft_putu(va_arg(*args, unsigned int), flags));
 	else if (sign == 'x')
-		return (ft_puthex(va_arg(*args, unsigned int), 0, 0, flags));
+		return (ft_puthex(va_arg(*args, unsigned int), 0, flags));
 	else if (sign == 'X')
-		return (ft_puthex(va_arg(*args, unsigned int), 0, 1, flags));
+		return (ft_puthex(va_arg(*args, unsigned int), 1, flags));
 	else if (sign == '%')
 		return (ft_putchar('%', flags));
 	return (-1);
