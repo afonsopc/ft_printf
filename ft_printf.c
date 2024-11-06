@@ -6,7 +6,7 @@
 /*   By: afpachec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:58:56 by afpachec          #+#    #+#             */
-/*   Updated: 2024/11/06 14:19:50 by afpachec         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:22:22 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,4 @@ ssize_t	ft_printf(const char *format, ...)
 		format++;
 	}
 	return (printed);
-}
-
-int main()
-{
-	int a = printf("%s", (char *)NULL);
-	int b = ft_printf("%s", (char *)NULL);
-
-	printf("%d | %d\n", a, b);
 }
